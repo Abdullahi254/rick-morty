@@ -1,6 +1,7 @@
+import Searchbar from "@/components/Searchbar"
 import { LInfo, Location } from "@/types"
 
-const getLocationList = async (page?:number):Promise<Location<LInfo>> => {
+const getLocationList = async (page?: number): Promise<Location<LInfo>> => {
   // function to get a list of locations from the rick and morty api
   try {
     const res = await fetch(`https://rickandmortyapi.com/api/location?page=${page}`)
@@ -16,7 +17,7 @@ export default async function Home() {
   // locationNames.results.forEach(res=>console.log(res.name))
   return (
     <main className="flex flex-col items-center min-h-screen mt-[200px] p-6 max-w-7xl mx-auto">
-     
+      <Searchbar />
     </main>
   );
 }
