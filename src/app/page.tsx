@@ -1,4 +1,4 @@
-import Searchbar from "@/components/Searchbar"
+import Search from "@/components/Search"
 import { LInfo, Location } from "@/types"
 
 const getLocationList = async (page?: number): Promise<Location<LInfo>> => {
@@ -13,11 +13,10 @@ const getLocationList = async (page?: number): Promise<Location<LInfo>> => {
 }
 
 export default async function Home() {
-  // const locationNames = await getLocationList(2)
-  // locationNames.results.forEach(res=>console.log(res.name))
+  const locationList = await getLocationList()
   return (
     <main className="flex flex-col items-center min-h-screen mt-[200px] p-6 max-w-7xl mx-auto">
-      <Searchbar />
+      <Search locationList={locationList}/>
     </main>
   );
 }
