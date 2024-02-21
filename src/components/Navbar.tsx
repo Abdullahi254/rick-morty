@@ -25,7 +25,7 @@ const Navbar = (props: Props) => {
         window.addEventListener('scroll', handleShadow)
     }, [])
     return (
-        <nav className={shadow ? `shadow-xl bg-gradient-to-r from-[#1e1f1a] to-[#000000] fixed top-0 w-full min-h-[120] border-b-[1px] border-gray-700 px-8 z-[100]` : ` bg-black fixed top-0 w-full min-h-[120px] border-b-[1px] border-gray-800 px-8 z-[100]`}>
+        <nav className={shadow ? `shadow-xl bg-gradient-to-r from-[#1e1f1a] to-[#000000] fixed top-0 w-full min-h-[120] max-h-[200px] border-b-[1px] border-gray-700 px-8 z-[100]` : ` bg-black fixed top-0 w-full min-h-[120px] max-h-[200px] border-b-[1px] border-gray-800 px-8 z-[100]`}>
             <div className=' flex flex-col space-y-4 justify-center h-full mx-auto max-w-7xl p-4'>
 
 

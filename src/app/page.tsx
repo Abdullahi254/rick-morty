@@ -12,11 +12,11 @@ const getLocationList = async (page?:number):Promise<Location<LInfo>> => {
 }
 
 export default async function Home() {
-  const locationNames = await getLocationList(2)
-  locationNames.results.forEach(res=>console.log(res.name))
+  // const locationNames = await getLocationList(2)
+  // locationNames.results.forEach(res=>console.log(res.name))
   return (
-    <main className="flex flex-col items-center min-h-screen py-20 px-6 max-w-7xl mx-auto">
-
+    <main className="flex flex-col items-center min-h-screen mt-[200px] p-6 max-w-7xl mx-auto">
+     
     </main>
   );
 }
