@@ -5,13 +5,14 @@ import { CiSearch } from "react-icons/ci";
 import { RiArrowDropDownLine } from "react-icons/ri";
 import SearchResult from './SearchResult';
 import DropDownSearch from './DropDownSearch';
-import { LInfo, Location } from '@/types'
+import { CHInfo, LInfo, Location } from '@/types'
 
 type Props = {
-    locationList: Location<LInfo>
+    locationList: LInfo[]
+    charList: CHInfo[]
 }
 
-const Search = ({ locationList }: Props) => {
+const Search = ({ locationList, charList }: Props) => {
     const [searchOption, setSearchOption] = useState<string>('Location')
     const [show, setShow] = useState<boolean>(false)
     const [searchWord, setSearchWord] = useState<string>()
@@ -37,6 +38,9 @@ const Search = ({ locationList }: Props) => {
     //function to get search option
     const handleSearchOption = (searchOption: string) => {
         setSearchOption(searchOption)
+        if (inputRef.current) {
+            inputRef.current.value = "";
+        }
         setShow(false)
     }
     // function to handle when search is triggered
@@ -94,7 +98,13 @@ const Search = ({ locationList }: Props) => {
                     <span className='absolute left-0 top-5 ps-4 text-base md:text-[20px]'>
                         <CiSearch className="font-bold text-white" />
                     </span>
-                    <DropDownSearch suggestionWord={suggestionWord} locationList={locationList} takeWord={(word) => handleSelectedWord(word)} clearSuggestionBox={clearSuggestionBox} />
+                    <DropDownSearch
+                        option={searchOption}
+                        suggestionWord={suggestionWord}
+                        locationList={locationList}
+                        charList = {charList}
+                        takeWord={(word) => handleSelectedWord(word)}
+                        clearSuggestionBox={clearSuggestionBox} />
                 </div>
             </form>
 

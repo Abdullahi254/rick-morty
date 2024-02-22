@@ -1,22 +1,77 @@
 import Search from "@/components/Search"
-import { LInfo, Location } from "@/types"
+import { CHInfo, LInfo } from "@/types"
 
-const getLocationList = async (page?: number): Promise<Location<LInfo>> => {
+const getLocationList = async (): Promise<LInfo[]> => {
   // function to get a list of locations from the rick and morty api
   try {
-    const res = await fetch(`https://rickandmortyapi.com/api/location?page=${page}`)
-    return res.json()
+    let locationResList: LInfo[][] = []
+    for (let i = 1; i <= 7; i++) {
+      //looping through all the pages in the api to get the total location data
+      const res = await fetch(`https://rickandmortyapi.com/api/location?page=${i}`)
+      const result = await res.json()
+      locationResList.push(result.results)
+    }
+    const mergedArray: LInfo[] = ([] as LInfo[]).concat(...locationResList);
+    //returns a list of the merged Location data
+    return mergedArray
+  }
+  catch (er) {
+    throw new Error('Failed to fetch data')
+  }
+}
 
-  } catch (er) {
+
+const getCharList = async (): Promise<CHInfo[]> => {
+  // function to get a list of characters from the rick and morty api
+  try {
+    let charResList: CHInfo[][] = []
+    for (let i = 1; i <= 7; i++) {
+      //looping through all the pages in the api to get the total character data
+      const res = await fetch(`https://rickandmortyapi.com/api/character/?page=${i}`)
+      const result = await res.json()
+      charResList.push(result.results)
+    }
+    const mergedArray: CHInfo[] = ([] as CHInfo[]).concat(...charResList);
+    //returns a list of the merged char data
+    return mergedArray
+  }
+  catch (er) {
+    throw new Error('Failed to fetch data')
+  }
+}
+
+
+const getLocationsByCharName = async (residentUrl: string): Promise<LInfo> => {
+  //getting a characters location from their url
+  try {
+    const locationList = await getLocationList()
+    return locationList.filter((loc => loc.residents.includes(residentUrl)))[0]
+  } catch {
     throw new Error('Failed to fetch data')
   }
 }
 
 export default async function Home() {
   const locationList = await getLocationList()
+  const charList = await getCharList()
+
+  const handlesearchOption = async (option: string) => {
+    try {
+      if (option === "Location") {
+        const results = await getLocationList()
+        return results
+      }
+
+      const results = await getCharList()
+      return results
+    } catch (er) {
+      throw new Error('Failed to fetch data')
+    }
+  }
+
   return (
     <main className="flex flex-col items-center min-h-screen mt-[200px] p-6 max-w-7xl mx-auto">
-      <Search locationList={locationList}/>
+      <Search locationList={locationList} charList={charList} />
     </main>
   );
 }

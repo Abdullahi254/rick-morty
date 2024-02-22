@@ -1,5 +1,5 @@
 
-// created custom Location info type found in the results property of Location
+//custom Location info type found in the results property of Location
 export type LInfo = {
     id: number
     name: string
@@ -8,6 +8,28 @@ export type LInfo = {
     residents: string[]
     url: string
     created: string
+}
+
+//custom character type 
+export type CHInfo = {
+    id: string
+    name: string
+    status: string
+    species: string
+    type:string
+    gender:string
+    origin:{
+        name:string
+        url:string
+    }
+    location:{
+        name:string
+        url:string
+    }
+    image:string
+    episode:string[]
+    url:string
+    created:string
 }
 
 //custom type for the Location results
