@@ -107,9 +107,6 @@ const Search = ({ locationList, charList }: Props) => {
                         clearSuggestionBox={clearSuggestionBox} />
                 </div>
             </form>
-
-            <SearchResult option={searchOption} word={searchWord} />
-
         </>
 
     )

@@ -21,7 +21,7 @@ const DropDownSearch = ({option, locationList, charList, suggestionWord, takeWor
     if (suggestionWord && option==="Location") {
         const filteredList = locationList.filter(location => location.name.toLowerCase().startsWith(suggestionWord.toLocaleLowerCase()))
         return (
-            <div className='bg-black shadow-lg shadow-gray-500 border-1 border-black p-4 space-y-3'>
+            <div className='bg-black shadow-lg shadow-gray-500 border-1 border-black p-4 space-y-3 absolute w-full z-10'>
 
                 {filteredList.map(location =>
                     <li key={location.id} className='text-white w-full hover:bg-gray-900 cursor-pointer list-none' onClick={()=>captureWord(location.name)}>
@@ -34,7 +34,7 @@ const DropDownSearch = ({option, locationList, charList, suggestionWord, takeWor
     if (suggestionWord && option==="Ch-Name") {
         const filteredList = charList.filter(char => char.name.toLowerCase().startsWith(suggestionWord.toLocaleLowerCase()))
         return (
-            <div className='bg-black shadow-lg shadow-gray-500 border-1 border-black p-4 space-y-3'>
+            <div className='bg-black shadow-lg shadow-gray-500 border-1 border-black p-4 space-y-3 absolute w-full z-10'>
 
                 {filteredList.map(char =>
                     <li key={char.id} className='text-white w-full hover:bg-gray-900 cursor-pointer list-none' onClick={()=>captureWord(char.name)}>

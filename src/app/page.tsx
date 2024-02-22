@@ -1,3 +1,5 @@
+import LocationCard from "@/components/LocationCard"
+import LocationList from "@/components/LocationList"
 import Search from "@/components/Search"
 import { CHInfo, LInfo } from "@/types"
 
@@ -51,27 +53,42 @@ const getLocationsByCharName = async (residentUrl: string): Promise<LInfo> => {
   }
 }
 
+const CombinedList = async (locationList: LInfo[])=> {
+  const data = await Promise.all(locationList.map(async (location) => {
+    const residentsData = await Promise.all(location.residents.map(async (url) => {
+      try {
+        const res = await fetch(url);
+        const resident: CHInfo = await res.json();
+        return {
+          image: resident.image,
+          name: resident.name,
+          status: resident.status
+        };
+      } catch (error) {
+        return {
+          image: "",
+          name: "",
+          status: ""
+        };
+      }
+    }));
+    return {
+      location: location.name,
+      residentsData
+    };
+  }));
+  return data;
+};
+
+
 export default async function Home() {
   const locationList = await getLocationList()
   const charList = await getCharList()
-
-  const handlesearchOption = async (option: string) => {
-    try {
-      if (option === "Location") {
-        const results = await getLocationList()
-        return results
-      }
-
-      const results = await getCharList()
-      return results
-    } catch (er) {
-      throw new Error('Failed to fetch data')
-    }
-  }
-
+  const combined = await CombinedList(locationList)
   return (
     <main className="flex flex-col items-center min-h-screen mt-[200px] p-6 max-w-7xl mx-auto">
       <Search locationList={locationList} charList={charList} />
+      <LocationList combinedList={combined} />
     </main>
   );
 }

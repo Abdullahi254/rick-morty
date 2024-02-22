@@ -42,3 +42,12 @@ export type Location<LInfo> = {
     },
     results:LInfo[]
 }
+
+export type CombinedList ={
+    location:string
+    residentsData:{
+        image:string
+        name:string
+        status:string
+    }[]
+}
