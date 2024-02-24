@@ -15,7 +15,7 @@ const Footer = (props: Props) => {
         <nav className={`w-full h-12 bg-gradient-to-r from-[#000000] to-[#1e1f1a] border-t-[1px] border-gray-800 px-8 py-2 z-[100]`}>
             <div className='flex w-full justify-evenly items-center'>
                 <div className='cursor-pointer'>
-                    <Image src={logo} width={60} height={60} alt='sheng icon' priority />
+                    <Image src={logo} width={60} height={60} alt='sheng icon' priority className='w-auto h-auto'/>
                 </div>
                 <div className='space-x-8'>
                     <Link href="/">
