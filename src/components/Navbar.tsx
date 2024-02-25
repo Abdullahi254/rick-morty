@@ -38,7 +38,7 @@ const Navbar = (props: Props) => {
                 <div className='w-full flex justify-center space-x-6'>
                     <Link href="/">
                         <span className={pathName === '/' ? `text-sm text-gray-100 underline` : `text-gray-100 text-sm hover:text-gray-300 hover:underline`}>
-                            Home
+                            Locations
                         </span>
                     </Link>
                     <Link href="/characters">
