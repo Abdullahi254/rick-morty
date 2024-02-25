@@ -5,7 +5,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 import logo from "../../public/logo.png"
-import { usePathname } from 'next/navigation'
+import { usePathname, useParams } from 'next/navigation'
 
 type Props = {}
 
@@ -13,6 +13,7 @@ const Navbar = (props: Props) => {
 
     const [shadow, setShadow] = useState<boolean>(false)
     const pathName = usePathname()
+    const params = useParams()
 
     useEffect(() => {
         const handleShadow = () => {
@@ -41,8 +42,8 @@ const Navbar = (props: Props) => {
                             Locations
                         </span>
                     </Link>
-                    <Link href="/characters">
-                        <span className={pathName === `/characters` ? `text-sm text-gray-100 underline` : `text-gray-100 text-sm hover:text-gray-300 hover:underline`}>
+                    <Link href="/characters/1">
+                        <span className={pathName === `/characters/${params.id}` ? `text-sm text-gray-100 underline` : `text-gray-100 text-sm hover:text-gray-300 hover:underline`}>
                             Characters
                         </span>
                     </Link>
