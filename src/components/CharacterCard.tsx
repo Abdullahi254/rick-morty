@@ -8,7 +8,7 @@ type Props = {
 
 const CharacterCard = ({character}: Props) => {
   return (
-    <div className='w-[70%] flex flex-col space-y-4 p-4 bg-black shadow-white shadow-lg rounded-lg'>
+    <div className='w-full md:w-[70%] flex flex-col space-y-4 p-4 bg-black shadow-white shadow-lg rounded-lg'>
         <Image src={character?.image} alt={character.name} width={200} height={200} priority/>
         <ul className='p-2 space-y-2'>
             <li className='text-white text-sm tracking-widest'>Name: <span className='ml-2 text-blue-300'>{character.name}</span></li>
