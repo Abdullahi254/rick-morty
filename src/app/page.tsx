@@ -54,7 +54,7 @@ const getLocationsByCharName = async (residentUrl: string): Promise<LInfo> => {
 }
 
 // a list of the custom data that gets listed in the home page ( type = CombinedList)
-const CombinedList = async (locationList: LInfo[]):Promise<CombinedList[]>=> {
+const combinedList = async (locationList: LInfo[]):Promise<CombinedList[]>=> {
   //looping through all the location data to get location name
   const data = await Promise.all(locationList.map(async (location) => {
     // looping throug all the residents in a location to get the img, name and status of character
@@ -65,13 +65,15 @@ const CombinedList = async (locationList: LInfo[]):Promise<CombinedList[]>=> {
         return {
           image: resident.image,
           name: resident.name,
-          status: resident.status
+          status: resident.status,
+          id:  Number(resident.id)
         };
       } catch (error) {
         return {
           image: "",
           name: "",
-          status: ""
+          status: "",
+          id: -1
         };
       }
     }));
@@ -87,7 +89,7 @@ const CombinedList = async (locationList: LInfo[]):Promise<CombinedList[]>=> {
 export default async function Home() {
   const locationList = await getLocationList()
   const charList = await getCharList()
-  const combined = await CombinedList(locationList)
+  const combined = await combinedList(locationList)
   return (
     <main className="flex flex-col items-center min-h-screen mt-[200px] p-6 max-w-7xl mx-auto">
       <Search locationList={locationList} charList={charList} combinedList={combined}/>

@@ -3,6 +3,7 @@
 import React, { useState } from 'react'
 import Image from 'next/image'
 import { CombinedList } from '@/types'
+import Link from 'next/link'
 
 
 
@@ -27,7 +28,7 @@ const LocationCard = ({
         <li key={index} className='w-full grid grid-cols-2 gap-8 items-center border-b-2 border-blue-300 py-4'>
           <div className='flex items-center space-x-2'>
             <Image src={res.image} alt={res.name} width={50} height={50} className='rounded-full' />
-            <h2 className='text-white text-xs lg:text-sm cursor-pointer hover:underline hover:text-gray-300'>{res.name}</h2>
+            <Link href={`/characters/${res.id}`}><h2 className='text-white text-xs lg:text-sm cursor-pointer hover:underline hover:text-gray-300'>{res.name}</h2></Link>
           </div>
           <h2 className='text-white text-xs lg:text-sm mr-1'>Status: <span className={`${res.status === 'Dead' ? 'text-red-400' : res.status === 'Alive' ? 'text-green-400' : 'text-white'} `}>{res.status}</span></h2>
         </li>) :
