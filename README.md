@@ -15,7 +15,7 @@ This project is a web application built using Next.js, Tailwind CSS, and TypeScr
 - Next.js
 - Tailwind CSS
 - TypeScript
-- Rick & Morty API
+- [Rick & Morty API](https://rickandmortyapi.com/)
 - Local Storage
 
 ## Getting Started
@@ -29,7 +29,7 @@ This project is a web application built using Next.js, Tailwind CSS, and TypeScr
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/yourusername/rick-morty.git
+git clone https://github.com/Abdullahi254/rick-morty.git
 ```
 
 2. Navigate to the project directory:
