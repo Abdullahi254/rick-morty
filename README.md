@@ -1,36 +1,72 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Rick & Morty Location Explorer
+
+This project is a web application built using Next.js, Tailwind CSS, and TypeScript, utilizing the Rick & Morty API to retrieve information about locations and their residents. Local storage is used for persisting notes about characters.
+
+## Features
+
+- Retrieve a list of locations along with their residents and their status.
+- Search or filter locations by location name, character name, or episode name.
+- View detailed information about each location, including its residents.
+- View resident details, including their name, status, and image.
+- Add and persist notes about characters.
+
+## Technologies Used
+
+- Next.js
+- Tailwind CSS
+- TypeScript
+- Rick & Morty API
+- Local Storage
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js and npm (or yarn) installed on your machine.
+
+### Installation
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/yourusername/rick-morty.git
+```
+
+2. Navigate to the project directory:
+
+```bash
+cd rick-morty
+```
+
+3. Install dependencies:
+
+```bash
+npm install
+# or
+yarn install
+```
+
+4. Start the development server:
 
 ```bash
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+5. Open your browser and visit http://localhost:3000 to view the application.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Usage
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- Use the search bar to search or filter locations by name, character name, or episode name.
+- Click on a location card to view its residents.
+- Click on a resident card to view detailed information about the resident.
+- Add notes about a character by clicking on the "Add Note" button on the resident details page.
 
-## Learn More
+## Credits
 
-To learn more about Next.js, take a look at the following resources:
+This project was created by Abdullahi.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## License
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+This project is licensed under the [MIT License](LICENSE).
