@@ -1,7 +1,7 @@
 import LocationCard from "@/components/LocationCard"
 import LocationList from "@/components/LocationList"
 import Search from "@/components/Search"
-import { CHInfo, LInfo } from "@/types"
+import { CHInfo, CombinedList, LInfo } from "@/types"
 
 const getLocationList = async (): Promise<LInfo[]> => {
   // function to get a list of locations from the rick and morty api
@@ -53,8 +53,11 @@ const getLocationsByCharName = async (residentUrl: string): Promise<LInfo> => {
   }
 }
 
-const CombinedList = async (locationList: LInfo[])=> {
+// a list of the custom data that gets listed in the home page ( type = CombinedList)
+const CombinedList = async (locationList: LInfo[]):Promise<CombinedList[]>=> {
+  //looping through all the location data to get location name
   const data = await Promise.all(locationList.map(async (location) => {
+    // looping throug all the residents in a location to get the img, name and status of character
     const residentsData = await Promise.all(location.residents.map(async (url) => {
       try {
         const res = await fetch(url);
