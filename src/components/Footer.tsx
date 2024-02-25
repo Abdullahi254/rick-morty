@@ -12,8 +12,7 @@ const Footer = (props: Props) => {
     const pathName = usePathname()
 
     return (
-        <nav className={`w-full h-12 bg-gradient-to-r from-[#000000] to-[#1e1f1a] border-t-[1px] border-gray-800 px-8 py-2 z-[100]`}>
-            <div className='flex w-full justify-evenly items-center'>
+        <nav className="w-full min-h-12 bg-gradient-to-r from-[#000000] to-[#1e1f1a] border-t-[1px] border-gray-800 px-8 py-2 z-[100] flex justify-evenly items-center flex-wrap">
                 <div className='cursor-pointer'>
                     <Image src={logo} width={60} height={60} alt='sheng icon' priority className='w-auto h-auto'/>
                 </div>
@@ -39,7 +38,6 @@ const Footer = (props: Props) => {
                         </span>
                     </Link>
                 </div>
-            </div>
         </nav>
     )
 }
