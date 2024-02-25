@@ -3,7 +3,6 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { CiSearch } from "react-icons/ci";
 import { RiArrowDropDownLine } from "react-icons/ri";
-import SearchResult from './SearchResult';
 import DropDownSearch from './DropDownSearch';
 import { CHInfo, LInfo, CombinedList } from '@/types'
 import LocationList from './LocationList';
