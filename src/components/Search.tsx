@@ -5,14 +5,16 @@ import { CiSearch } from "react-icons/ci";
 import { RiArrowDropDownLine } from "react-icons/ri";
 import SearchResult from './SearchResult';
 import DropDownSearch from './DropDownSearch';
-import { CHInfo, LInfo, Location } from '@/types'
+import { CHInfo, LInfo, CombinedList } from '@/types'
+import LocationList from './LocationList';
 
 type Props = {
     locationList: LInfo[]
     charList: CHInfo[]
+    combinedList: CombinedList[]
 }
 
-const Search = ({ locationList, charList }: Props) => {
+const Search = ({ locationList, charList, combinedList }: Props) => {
     const [searchOption, setSearchOption] = useState<string>('Location')
     const [show, setShow] = useState<boolean>(false)
     const [searchWord, setSearchWord] = useState<string>()
@@ -37,6 +39,7 @@ const Search = ({ locationList, charList }: Props) => {
 
     //function to get search option
     const handleSearchOption = (searchOption: string) => {
+        setSearchWord(undefined)
         setSearchOption(searchOption)
         if (inputRef.current) {
             inputRef.current.value = "";
@@ -54,6 +57,9 @@ const Search = ({ locationList, charList }: Props) => {
     }
     // handles input change for auto complete suggestion
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if(e.target.value.length < 1){
+            setSearchWord(undefined)
+        }
         setSuggestionWord(e.target.value)
     }
 
@@ -68,25 +74,44 @@ const Search = ({ locationList, charList }: Props) => {
             inputRef.current.value = word;
         }
     }
+    // searched by Location list
+    const filterdByLocation = () => {
+        const list = combinedList.filter(location => location.location === searchWord)
+        return list
+    }
+    // searched by character name
+    const filterdByCharacter = () => {
+        const list = combinedList.filter((val) => {
+            const isTrueList = val.residentsData.map(res => {
+                if (res.name === searchWord) {
+                    return true
+                }
+            })
+            if (isTrueList.includes(true)) {
+                return val
+            }
+        })
+        return list
+    }
     return (
         <>
             <form className='w-full flex items-start justify-center  space-x-4'>
                 <div className='border-2 border-gray-800 rounded-lg bg-black flex items-center p-4 space-x-2 relative' ref={ref}>
-                    <div className='text-xs lg:text-sm text-white cursor-pointer' onClick={() => setShow(true)}>
+                    <div className='text-xs lg:text-sm text-white cursor-pointer' onClick={() => setShow(prev=>!prev)}>
                         {searchOption}
                     </div>
-                    <span className='cursor-pointer' onClick={() => setShow(true)}>
+                    <span className='cursor-pointer' onClick={() => setShow(prev=>!prev)}>
                         {show ? <RiArrowDropDownLine className="font-bold text-white text-2xl" /> :
                             <RiArrowDropDownLine className="font-bold text-white text-2xl rotate-180" />
                         }
                     </span>
                     {
                         show &&
-                        <div className='absolute bg-black h-[150px] w-[200px] -left-2 top-20 md:top-16 z-50 shadow-lg shadow-gray-500'>
+                        <div className='absolute bg-black h-[100px] rounded-lg w-[200px] -left-2 top-20 md:top-16 z-50 shadow-lg shadow-gray-500'>
                             <ul className='text-white space-y-4 p-4'>
                                 <li className='hover:bg-gray-900 px-2 cursor-pointer' onClick={() => handleSearchOption('Location')}>Location</li>
                                 <li className='hover:bg-gray-900 px-2 cursor-pointer' onClick={() => handleSearchOption('Ch-Name')}>Character Name</li>
-                                <li className='hover:bg-gray-900 px-2 cursor-pointer' onClick={() => handleSearchOption('Episode')}>Episode</li>
+                                {/* <li className='hover:bg-gray-900 px-2 cursor-pointer' onClick={() => handleSearchOption('Episode')}>Episode</li> */}
                             </ul>
                         </div>
                     }
@@ -102,11 +127,19 @@ const Search = ({ locationList, charList }: Props) => {
                         option={searchOption}
                         suggestionWord={suggestionWord}
                         locationList={locationList}
-                        charList = {charList}
+                        charList={charList}
                         takeWord={(word) => handleSelectedWord(word)}
                         clearSuggestionBox={clearSuggestionBox} />
                 </div>
             </form>
+            <LocationList combinedList={
+                searchOption === "Location" && searchWord ? filterdByLocation() :
+                    searchOption === "Ch-Name" && searchWord ? filterdByCharacter() :
+                        combinedList
+            }
+                searchOption={searchOption}
+                searchedWord = {searchWord}
+            />
         </>
 
     )
