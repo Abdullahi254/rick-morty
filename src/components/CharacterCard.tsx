@@ -17,7 +17,7 @@ const CharacterCard = ({character}: Props) => {
             <li className='text-white text-sm tracking-widest'>Type: <span className='ml-2 text-blue-300'>{character.type}</span></li>
             <li className='text-white text-sm tracking-widest'>Gender: <span className='ml-2 text-blue-300'>{character.gender}</span></li>
             <li className='text-white text-sm tracking-widest'>Origin: <span className='ml-2 text-blue-300'>{character.origin.name}</span></li>
-            <li className='text-white text-sm tracking-widest'>Location: <span className='ml-2 text-blue-300'>{character.location.name}</span></li>
+            <li className='text-white text-sm tracking-widest'>Last Location: <span className='ml-2 text-blue-300'>{character.location.name}</span></li>
             <li className='text-white text-sm tracking-widest'>Featured Episodes: <span className='ml-2 text-blue-300'>{character.episode.length}</span></li>
         </ul>
     </div>
