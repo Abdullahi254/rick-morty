@@ -18,6 +18,7 @@ export default function Error({
         <main className="flex flex-col items-center min-h-screen mt-[200px] p-6 max-w-7xl mx-auto">
             <h2 className='text-red-500 text-lg lg:text-xl text-center'>Something went wrong!</h2>
             <button
+            className='text-white underline'
                 onClick={
                     // Attempt to recover by trying to re-render the segment
                     () => reset()
