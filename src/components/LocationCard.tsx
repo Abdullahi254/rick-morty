@@ -15,9 +15,9 @@ const LocationCard = ({
   const handleMoreClick = () => {
     setVisibleCount(prevCount => prevCount + 5);
   };
-  //when less button is clicked reduce the visible count by an interval of five
+  //when less button is clicked reduce the visible count to 5
   const handleLessClick = () => {
-    setVisibleCount(prevCount => prevCount - 5);
+    setVisibleCount(5);
   }
   return (
     <div className='bg-black border-2 border-gray-800 shadow-lg shadow-white flex flex-col space-y-2 py-4 px-4 w-full'>
