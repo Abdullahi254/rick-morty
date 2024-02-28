@@ -91,7 +91,7 @@ export default async function Home() {
   const charList = await getCharList()
   const combined = await combinedList(locationList)
   return (
-    <main className="flex flex-col items-center min-h-screen mt-[200px] p-6 max-w-7xl mx-auto">
+    <main className="flex flex-col items-center min-h-screen mt-[120px] lg:mt-[200px] p-6 max-w-7xl mx-auto">
       <Search locationList={locationList} charList={charList} combinedList={combined}/>
     </main>
   );

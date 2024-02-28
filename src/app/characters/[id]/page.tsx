@@ -30,7 +30,7 @@ const Characters = async ({ params }: Props) => {
     }
     else {
         return (
-            <main className="flex flex-col items-center min-h-screen mt-[200px] p-6 max-w-7xl mx-auto">
+            <main className="flex flex-col items-center min-h-screen mt-[120px] lg:mt-[200px] p-6 max-w-7xl mx-auto">
                 <div className='text-red-500 tracking-wide text-lg lg:text-xl'>COULD NOT FETCH CHARACTER!</div>
             </main>
         )

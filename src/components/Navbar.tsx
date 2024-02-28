@@ -32,7 +32,7 @@ const Navbar = (props: Props) => {
 
                 <div className='w-full flex justify-center pt-2'>
                     <Link href="/">
-                        <Image src={logo} alt='R&M icon' height={80} priority className='cursor-pointer w-auto h-auto' />
+                        <Image src={logo} alt='R&M icon' height={80} priority className='cursor-pointer h-[40px] w-auto lg:h-auto' />
                     </Link>
                 </div>
 
